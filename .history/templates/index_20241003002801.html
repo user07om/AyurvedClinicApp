@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('upload') }}">Upload</a></li>
+                <li><a href="{{ url_for('consultation') }}">Consultation</a></li>
+                <li><a href="{{ url_for('patient_info') }}">Patient Info</a></li>
+            </ul>
+        </nav>
+        <h1>Welcome to AurvedToAll</h1>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Experience the Healing Power of Ayurveda</h2>
+            <video width="600" controls>
+                <source src="/static/sample_video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <h2>About Us</h2>
+        <p>At our clinic, we are dedicated to restoring harmony and balance to your mind, body, and spirit through the time-honored practices of Ayurveda...</p>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <h2>Our Services</h2>
+        <ul>
+            <li>Personalized Ayurvedic Treatments</li>
+            <li>Online Consultations</li>
+            <li>Holistic Healing Programs</li>
+        </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 AurvedToAll. All Rights Reserved.</p>
+    </footer>
+{% endblock %}

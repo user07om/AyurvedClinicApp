@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Patient Information Form</h2>
+    <form action="{{ url_for('patient_info') }}" method="POST" enctype="multipart/form-data">
+        <label for="name">Your Name:</label>
+        <input type="text" name="name" required>
+        
+        <label for="report">Upload Report/Perscription:</label>
+        <input type="file" name="report" required>
+        
+        <button type="submit">Submit</button>
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+{% endblock %}

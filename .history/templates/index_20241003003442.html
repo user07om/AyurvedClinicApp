@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AurvedToAll</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1>AurvedToAll</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/upload">Upload Videos</a></li>
+                    <li><a href="/consultation">Consultation</a></li>
+                    <li><a href="/patient_info">Patient Info</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video autoplay muted loop>
+            <source src="{{ url_for('static', filename='sample_video.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content">
+            <h2>Experience the Healing Power of Ayurveda</h2>
+            <p>Holistic care for your mind, body, and spirit.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <section class="intro">
+            <div class="container">
+                <h2>Welcome to AurvedToAll</h2>
+                <p>At our clinic, we are dedicated to restoring harmony and balance to your mind, body, and spirit through the time-honored practices of Ayurveda. Discover the transformative power of Ayurveda with us.</p>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2>Our Key Services</h2>
+                <ul>
+                    <li>Personalized Ayurvedic Consultations</li>
+                    <li>Online Consultations</li>
+                    <li>Video Uploads for Diagnosis</li>
+                    <li>Patient Info Form</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 AurvedToAll | Healing for the Mind, Body, and Spirit</p>
+        </div>
+    </footer>
+</body>
+</html>
