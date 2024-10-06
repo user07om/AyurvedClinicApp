@@ -61,4 +61,4 @@ def patient_info():
     return render_template('patient_info.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port="8080")
