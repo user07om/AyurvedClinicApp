@@ -1,0 +1,163 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sliding Patient Appointments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0e0e0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: 36px;
+            margin-top: 20px;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            height: 300px;
+        }
+        .arrow {
+            font-size: 50px;
+            cursor: pointer;
+            z-index: 1;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #fff;
+            border-radius: 50%;
+            padding: 10px;
+        }
+        .arrow-left {
+            left: 10px;
+        }
+        .arrow-right {
+            right: 10px;
+        }
+        .card-slider {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+        }
+        .card {
+            background-color: #90ee90;
+            border: 2px solid #000;
+            border-radius: 5px;
+            width: 220px;
+            padding: 10px;
+            margin: 0 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card h2 {
+            font-size: 18px;
+            margin: 0;
+        }
+        .card p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        .card ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            text-align: left;
+        }
+        .card ul li {
+            font-size: 14px;
+        }
+        .card button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .accept {
+            background-color: #32cd32;
+            color: #000;
+        }
+        .reject {
+            background-color: #ff6347;
+            color: #000;
+        }
+        .view {
+            background-color: #add8e6;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone/babel.min.js"></script>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function App() {
+            const [appointments, setAppointments] = useState([]);
+            const [currentIndex, setCurrentIndex] = useState(0);
+
+            useEffect(() => {
+                const data = [
+                    { id: 1, name: "John Doe", contact: "johndoe@example.com", details: ["Consultation", "Blood Test"] },
+                    { id: 2, name: "Jane Smith", contact: "janesmith@example.com", details: ["Check-up", "X-ray"] },
+                    { id: 3, name: "Michael Lee", contact: "michaellee@example.com", details: ["Surgery follow-up"] }
+                ];
+                setAppointments(data);
+            }, []);
+
+            const nextSlide = () => {
+                setCurrentIndex((prevIndex) => 
+                    prevIndex === appointments.length - 1 ? 0 : prevIndex + 1
+                );
+            };
+
+            const prevSlide = () => {
+                setCurrentIndex((prevIndex) => 
+                    prevIndex === 0 ? appointments.length - 1 : prevIndex - 1
+                );
+            };
+
+            return (
+                <div>
+                    <h1>Sliding Patient Appointments</h1>
+                    <div className="container">
+                        <div className="arrow arrow-left" onClick={prevSlide}>&#9664;</div>
+                        <div className="card-slider" style={{ transform: `translateX(-${currentIndex * 240}px)` }}>
+                            {appointments.map(appointment => (
+                                <div className="card" key={appointment.id}>
+                                    <h2>{appointment.name}</h2>
+                                    <p>{appointment.contact}</p>
+                                    <ul>
+                                        {appointment.details.map((detail, index) => (
+                                            <li key={index}>{detail}</li>
+                                        ))}
+                                    </ul>
+                                    <button className="accept">ACCEPT</button>
+                                    <button className="reject">REJECT</button>
+                                    <button className="view">VIEW</button>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="arrow arrow-right" onClick={nextSlide}>&#9654;</div>
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>

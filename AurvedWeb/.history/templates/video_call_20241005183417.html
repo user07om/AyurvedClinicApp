@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Call - AurvedToAll</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .video-container {
+            margin: 20px auto;
+            max-width: 900px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        video {
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            background-color: #000;
+            border: 3px solid #4CAF50;
+            border-radius: 8px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            .video-container {
+                flex-direction: column;
+            }
+
+            video {
+                max-width: 90%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Start Your Video Call</h1>
+    </header>
+
+    <!-- Video Call Section -->
+    <div class="video-container">
+        <!-- Local Video -->
+        <div>
+            <h2>Your Video</h2>
+            <video id="localVideo" autoplay playsinline></video>
+        </div>
+        <!-- Remote Video -->
+        <div>
+            <h2>Remote Video</h2>
+            <video id="remoteVideo" autoplay playsinline></video>
+        </div>
+    </div>
+
+    <!-- Buttons for Actions -->
+    <div>
+        <button id="startCall">Start Call</button>
+        <button id="endCall">End Call</button>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 AurvedToAll | Healing for the Mind, Body, and Spirit</p>
+    </footer>
+
+    <script>
+        const startCallButton = document.getElementById('startCall');
+        const endCallButton = document.getElementById('endCall');
+        const localVideo = document.getElementById('localVideo');
+        const remoteVideo = document.getElementById('remoteVideo');
+
+        let localStream;
+        let peerConnection;
+        const servers = {
+            iceServers: [
+                { urls: 'stun:stun.l.google.com:19302' }
+            ]
+        };
+
+        // Get Local Media (Camera and Microphone)
+        async function getLocalStream() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                localVideo.srcObject = stream;
+                localStream = stream;
+            } catch (error) {
+                console.error('Error accessing camera or microphone:', error);
+            }
+        }
+
+        // Start the video call
+        startCallButton.addEventListener('click', async () => {
+            // Get local media stream
+            await getLocalStream();
+
+            // Create PeerConnection
+            peerConnection = new RTCPeerConnection(servers);
+
+            // Add the local stream to the peer connection
+            localStream.getTracks().forEach(track => {
+                peerConnection.addTrack(track, localStream);
+            });
+
+            // Handle remote stream
+            peerConnection.ontrack = (event) => {
+                const [remoteStream] = event.streams;
+                remoteVideo.srcObject = remoteStream;
+            };
+
+            // ICE candidates handling
+            peerConnection.onicecandidate = (event) => {
+                if (event.candidate) {
+                    console.log('New ICE candidate:', event.candidate);
+                    // Send the ICE candidate to the remote peer via signaling server (WebSocket)
+                }
+            };
+
+            // Create offer
+            const offer = await peerConnection.createOffer();
+            await peerConnection.setLocalDescription(offer);
+
+            // Send offer to remote peer via signaling server (WebSocket)
+            console.log('Sending offer:', offer);
+        });
+
+        // End the video call
+        endCallButton.addEventListener('click', () => {
+            if (peerConnection) {
+                peerConnection.close();
+                peerConnection = null;
+            }
+            localVideo.srcObject = null;
+            remoteVideo.srcObject = null;
+        });
+    </script>
+</body>
+
+</html>

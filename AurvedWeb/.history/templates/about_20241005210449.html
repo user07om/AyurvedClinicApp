@@ -1,0 +1,149 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Patient Appointments</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: 36px;
+            color: #333;
+            margin-top: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        .arrow {
+            font-size: 50px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+        .arrow:hover {
+            transform: scale(1.1);
+        }
+        .card {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 220px;
+            padding: 15px;
+            margin: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .card h2 {
+            font-size: 20px;
+            color: #007BFF;
+            margin: 0 0 10px;
+        }
+        .card p {
+            font-size: 14px;
+            margin: 5px 0;
+            color: #555;
+        }
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+            text-align: left;
+        }
+        .card ul li {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .card button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .accept {
+            background-color: #28a745;
+            color: white;
+        }
+        .accept:hover {
+            background-color: #218838;
+        }
+        .reject {
+            background-color: #dc3545;
+            color: white;
+        }
+        .reject:hover {
+            background-color: #c82333;
+        }
+        .view {
+            background-color: #17a2b8;
+            color: white;
+        }
+        .view:hover {
+            background-color: #138496;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone/babel.min.js"></script>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function App() {
+            const [appointments, setAppointments] = useState([]);
+
+            useEffect(() => {
+                // Simulate fetching from an API
+                const fetchAppointments = async () => {
+                    const data = [
+                        { id: 1, name: "John Doe", contact: "johndoe@example.com", details: ["Consultation", "Blood Test"] },
+                        { id: 2, name: "Jane Smith", contact: "janesmith@example.com", details: ["Check-up", "X-ray"] },
+                        { id: 3, name: "Michael Lee", contact: "michaellee@example.com", details: ["Surgery follow-up"] }
+                    ];
+                    setAppointments(data);
+                };
+                fetchAppointments();
+            }, []);
+
+            return (
+                <div>
+                    <h1>Dynamic Patient Appointments</h1>
+                    <div className="container">
+                        {appointments.map(appointment => (
+                            <div className="card" key={appointment.id}>
+                                <h2>{appointment.name}</h2>
+                                <p>{appointment.contact}</p>
+                                <ul>
+                                    {appointment.details.map((detail, index) => (
+                                        <li key={index}>{detail}</li>
+                                    ))}
+                                </ul>
+                                <button className="accept">ACCEPT</button>
+                                <button className="reject">REJECT</button>
+                                <button className="view">VIEW</button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>

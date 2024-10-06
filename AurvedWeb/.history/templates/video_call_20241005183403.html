@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Book an Online Consultation</h2>
+    <form action="{{ url_for('consultation') }}" method="POST">
+        <label for="name">Your Name:</label>
+        <input type="text" name="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" name="email" required>
+        
+        <label for="time_slot">Select a Time Slot:</label>
+        <select name="time_slot" required>
+            <option value="09:00 AM">09:00 AM</option>
+            <option value="10:00 AM">10:00 AM</option>
+            <option value="11:00 AM">11:00 AM</option>
+            <option value="02:00 PM">02:00 PM</option>
+            <option value="03:00 PM">03:00 PM</option>
+        </select>
+        
+        <button type="submit">Book Consultation</button>
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+{% endblock %}

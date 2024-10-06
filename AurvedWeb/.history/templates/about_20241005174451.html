@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - AurvedToAll</title>
+    <style>
+        /* Basic CSS reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-section h2 {
+            text-align: center;
+            color: #4CAF50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .about-section p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .about-section img {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .about-section h2 {
+                font-size: 2em;
+            }
+
+            .about-section p {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>About AurvedToAll</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <!-- <li><a href="/upload">Upload Videos</a></li> -->
+                <li><a href="/consultation">Consultation</a></li>
+                <!-- <li><a href="/patient_info">Patient Info</a></li> -->
+            </ul>
+        </nav>
+    </header>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <h2>Who We Are</h2>
+        <p>
+            Welcome to AurvedToAll, where we believe in the power of Ayurveda to transform lives. With a focus on
+            holistic well-being, we aim to bring balance to your mind, body, and spirit. Our team of certified
+            Ayurvedic practitioners offers personalized consultations, online sessions, and much more to ensure that
+            you receive the best care tailored to your unique needs.
+        </p>
+        <p>
+            Ayurveda, a time-honored practice, is more than just a method of treatment. It's a lifestyle that promotes
+            harmony and health in all aspects of life. At AurvedToAll, we are dedicated to restoring balance and
+            promoting long-term well-being through personalized Ayurvedic consultations, treatments, and products.
+        </p>
+        <img src="{{ url_for('static', filename='ayurveda_image.jpg') }}" alt="Ayurveda Image">
+        <p>
+            Our online services allow you to access expert guidance and support from the comfort of your home. Whether
+            you're seeking a consultation or looking to learn more about the Ayurvedic lifestyle, we are here to guide
+            you on your path to health and wellness.
+        </p>
+        <p>
+            Join us on this journey toward natural healing, and discover how Ayurveda can bring peace, health, and
+            vitality into your life.
+        </p>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 AurvedToAll | Healing for the Mind, Body, and Spirit</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Appointments Slider</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+        }
+        .arrow {
+            font-size: 50px;
+            cursor: pointer;
+            margin: 0 20px;
+        }
+        .card-slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .card {
+            background-color: #add8e6;
+            border: 2px solid #333;
+            border-radius: 5px;
+            width: 200px;
+            padding: 20px;
+            margin: 0 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .card h2, .card p {
+            margin: 0 0 10px 0;
+        }
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .card ul li {
+            text-align: left;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        .accept { background-color: #32cd32; }
+        .reject { background-color: #ff6347; }
+        .view { background-color: #add8e6; }
+    </style>
+</head>
+<body>
+    <h1>Sliding Patient Appointments</h1>
+    <div id="root"></div>
+
+    <!-- React and Babel CDN -->
+    <script src="https://unpkg.com/react/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone/babel.min.js"></script>
+    
+    <!-- Link to React JSX file -->
+    <script defer type="text/babel" src="{{ url_for('static', filename='js/app.jsx') }}"></script>
+</body>
+</html>

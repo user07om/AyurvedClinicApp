@@ -1,0 +1,104 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sliding Patient Appointments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0e0e0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: 36px;
+            margin-top: 20px;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            height: 300px;
+        }
+        .arrow {
+            font-size: 50px;
+            cursor: pointer;
+            z-index: 1;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #fff;
+            border-radius: 50%;
+            padding: 10px;
+        }
+        .arrow-left {
+            left: 10px;
+        }
+        .arrow-right {
+            right: 10px;
+        }
+        .card-slider {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+        }
+        .card {
+            background-color: #90ee90;
+            border: 2px solid #000;
+            border-radius: 5px;
+            width: 220px;
+            padding: 10px;
+            margin: 0 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card h2 {
+            font-size: 18px;
+            margin: 0;
+        }
+        .card p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        .card ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            text-align: left;
+        }
+        .card ul li {
+            font-size: 14px;
+        }
+        .card button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .accept {
+            background-color: #32cd32;
+            color: #000;
+        }
+        .reject {
+            background-color: #ff6347;
+            color: #000;
+        }
+        .view {
+            background-color: #add8e6;
+            color: #000;
+        }
+    </style>
+    <script defer src="{{ url_for('static', filename='js/app.jsx') }}"></script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>
