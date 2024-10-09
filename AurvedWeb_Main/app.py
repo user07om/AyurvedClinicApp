@@ -20,6 +20,22 @@ def home():
 def about():
     return render_template('about.html')
 
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/error')
+def error():
+    return render_template('404.html')
+
+@app.route('/blogs')
+def blogs():
+    return render_template('blog-single.html')
+
+@app.route('/portfolio')
+def portfolio():
+    return render_template('portfolio-details.html')
+
 @app.route('/video')
 def video():
     return render_template('video_call.html')
