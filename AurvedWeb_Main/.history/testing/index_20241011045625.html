@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Streaming</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1000px; /* Limit the width for better readability */
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        video {
+            width: 200%;
+            border-radius: 4px;
+        }
+
+        .controls {
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .blog-post {
+            margin-top: 20px;
+        }
+
+        .blog-post h2 {
+            margin-top: 20px;
+        }
+
+        .blog-post p {
+            line-height: 1.6;
+        }
+
+    </style>
+</head>
+<body></body>
+    <div class="container">
+        <h1>Video Streaming Blog</h1>
+        <video id="videoPlayer" controls>
+            <source src="D:\omkar\AyurvedClinicApp\AurvedWeb_Main\static\sample_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="controls">
+            <button id="playButton">Play</button>
+            <button id="pauseButton">Pause</button>
+            <button id="stopButton">Stop</button>
+        </div>
+        <div class="blog-post">
+            <h2>Blog Post Title</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Praesent ac gravida ligula. Integer auctor, libero eget tincidunt pretium, lorem ex posuere est, non fringilla libero lorem eget dui.</p>
+            <p>Donec nec arcu ac nulla suscipit tincidunt. Aenean nec faucibus velit. Sed ac nisi ut libero tristique sollicitudin. Suspendisse potenti.</p>
+        </div>
+    </div>
+    <script>
+        const videoPlayer = document.getElementById('videoPlayer');
+        const playButton = document.getElementById('playButton');
+        const pauseButton = document.getElementById('pauseButton');
+        const stopButton = document.getElementById('stopButton');
+
+        playButton.addEventListener('click', () => {
+            videoPlayer.play();
+        });
+
+        pauseButton.addEventListener('click', () => {
+            videoPlayer.pause();
+        });
+
+        stopButton.addEventListener('click', () => {
+            videoPlayer.pause();
+            videoPlayer.currentTime = 0;
+        });
+
+    </script>
+</body>
+</html>

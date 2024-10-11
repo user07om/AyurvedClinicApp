@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Streaming</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Video Streaming Example</h1>
+        <video id="videoPlayer" controls>
+            <source src="your-video-file.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="controls">
+            <button id="playButton">Play</button>
+            <button id="pauseButton">Pause</button>
+            <button id="stopButton">Stop</button>
+        </div>
+    </div>
+    <script>
+        const videoPlayer = document.getElementById('videoPlayer');
+        const playButton = document.getElementById('playButton');
+        const pauseButton = document.getElementById('pauseButton');
+        const stopButton = document.getElementById('stopButton');
+
+        playButton.addEventListener('click', () => {
+            videoPlayer.play();
+        });
+
+        pauseButton.addEventListener('click', () => {
+            videoPlayer.pause();
+        });
+
+        stopButton.addEventListener('click', () => {
+            videoPlayer.pause();
+            videoPlayer.currentTime = 0;
+        });
+
+    </script>
+</body>
+</html>
